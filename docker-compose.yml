@@ -1,7 +1,7 @@
 version: '3'
 services:
     mysql:
-        image: 'mysql:5.7.32'
+        image: 'mysql/mysql-server:8.0'
         ports:
             - '3306:3306'
         environment:
@@ -44,6 +44,14 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
+    mongodb:
+        image: 'mongo:latest'
+        ports:
+            - '27017:27017'
+        networks:
+            - infra
+        volumes:
+            - 'infra-mongo:/data/db'
 networks:
     infra:
         driver: bridge
@@ -51,4 +59,6 @@ volumes:
     infra-mysql:
         driver: local
     infra-redis:
+        driver: local
+    infra-mongo:
         driver: local
