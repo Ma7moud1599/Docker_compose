@@ -61,7 +61,6 @@ services:
             - infra
         volumes:
             - 'infra-mailpit:/data'
-            horizon) Service
 networks:
     infra:
         driver: bridge
